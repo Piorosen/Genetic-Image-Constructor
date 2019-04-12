@@ -1,1 +1,1 @@
-# Genetic-Image-Constructor
+# GeneticImage
