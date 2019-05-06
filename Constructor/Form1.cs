@@ -18,7 +18,11 @@ namespace WindowsFormsApp1
         {
             set
             {
-                label_status.Text = $"Status : {value}"; 
+                this.Invoke(new MethodInvoker(() =>
+                {
+                    label_status.Text = $"Status : {value}";
+                }));
+                
             }
         }
 
@@ -85,19 +89,34 @@ namespace WindowsFormsApp1
                 }
         }
 
+
         private void find_Click(object sender, EventArgs e)
         {
             Status = "find file...";
-            string name = "text_" + (sender as Control).Name.Split('_')[1];
+            var tmp = (sender as Control).Name.Split('_')[1];
+            string result = string.Empty;
+            if (tmp == "savefolder")
+            {
+                FolderBrowserDialog fbd = new FolderBrowserDialog();
+                if (fbd.ShowDialog() == DialogResult.OK)
+                {
+                    result = fbd.SelectedPath;
+                }
+            }
+            else
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    result = ofd.FileName;
+                }
+            }
+            string name = "text_" + tmp;
 
             var obj = GetType().GetField(name, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+            obj.GetType().GetProperty("Text").SetValue(obj, result);
 
-            OpenFileDialog ofd = new OpenFileDialog();
-            
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                obj.GetType().GetProperty("Text").SetValue(obj, ofd.FileName);
-            }
             Status = "find";
         }
 
@@ -169,7 +188,6 @@ namespace WindowsFormsApp1
             {
                 Status = "execute";
                 text_grayscale.Enabled = false;
-                text_grayscale.BackColor = Color.Gray;
                 Global.Stop = false;
 
                 GeneticManager gm = new GeneticManager(new Bitmap(pic_origin.Image));
@@ -178,41 +196,49 @@ namespace WindowsFormsApp1
             }
         }
 
+        object _lock = new object();
         private void Gm_BestGenImage(object sender, (Bitmap result, int gen) e)
         {
-            pic_bestsol.Image = e.result;
-
-            Status = $"{e.gen} gen...";
-            if (check_save.Checked)
+            lock (_lock)
             {
-                if (!Directory.Exists(text_savefolder.Text))
+                Status = $"{e.gen} gen...";
+                if (check_save.Checked)
                 {
-                    Directory.CreateDirectory(text_savefolder.Text);
+                    if (!Directory.Exists(text_savefolder.Text))
+                    {
+                        Directory.CreateDirectory(text_savefolder.Text);
+                    }
+                    e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}.png"));
+
+                    StreamWriter sw = new StreamWriter(text_csv.Text, true, Encoding.UTF8);
+                    sw.WriteLine($"{e.gen}, {DistanceScore(new Bitmap(pic_origin.Image), e.result)}");
+                    sw.Close();
+
+                    Status = $"{e.gen} csv save";
+
+                    if (check_median.Checked)
+                    {
+                        Status = $"{e.gen} median filter...";
+                        MedianFiltering(e.result);
+                        Status = $"{e.gen} median filter";
+                        e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}_Median.png"));
+                    }
                 }
-                e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}.png"));
 
-                StreamWriter sw = new StreamWriter(text_csv.Text, true, Encoding.UTF8);
-                sw.WriteLine($"{e.gen}, {DistanceScore(new Bitmap(pic_origin.Image), e.result)}");
-                sw.Close();
+                pic_bestsol.Image = e.result;
 
-                Status = $"{e.gen} csv save";
 
-                if (check_median.Checked)
+                Status = $"{e.gen} gen complete";
+
+                if (Global.Stop)
                 {
-                    Status = $"{e.gen} median filter...";
-                    MedianFiltering(e.result);
-                    Status = $"{e.gen} median filter";
-                    e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}_Median.png"));
+                    Status = "stop!";
+                    this.Invoke(new MethodInvoker(() =>
+                    {
+                        text_grayscale.Enabled = true;
+                    }));
+                    
                 }
-            }
-
-            pic_bestsol.Image = e.result;
-            Status = $"{e.gen} gen complete";
-
-
-            if (Global.Stop)
-            {
-                Status = "stop!";
             }
         }
 

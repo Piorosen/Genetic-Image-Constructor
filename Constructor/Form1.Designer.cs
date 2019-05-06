@@ -172,6 +172,7 @@
             this.pic_origin.Location = new System.Drawing.Point(14, 10);
             this.pic_origin.Name = "pic_origin";
             this.pic_origin.Size = new System.Drawing.Size(300, 300);
+            this.pic_origin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_origin.TabIndex = 10;
             this.pic_origin.TabStop = false;
             // 
@@ -192,6 +193,7 @@
             this.pic_bestsol.Location = new System.Drawing.Point(350, 10);
             this.pic_bestsol.Name = "pic_bestsol";
             this.pic_bestsol.Size = new System.Drawing.Size(300, 300);
+            this.pic_bestsol.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_bestsol.TabIndex = 13;
             this.pic_bestsol.TabStop = false;
             // 
