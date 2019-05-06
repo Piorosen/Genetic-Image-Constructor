@@ -178,9 +178,42 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void Gm_BestGenImage(object sender, (Bitmap, int) e)
+        private void Gm_BestGenImage(object sender, (Bitmap result, int gen) e)
         {
-            throw new NotImplementedException();
+            pic_bestsol.Image = e.result;
+
+            Status = $"{e.gen} gen...";
+            if (check_save.Checked)
+            {
+                if (!Directory.Exists(text_savefolder.Text))
+                {
+                    Directory.CreateDirectory(text_savefolder.Text);
+                }
+                e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}.png"));
+
+                StreamWriter sw = new StreamWriter(text_csv.Text, true, Encoding.UTF8);
+                sw.WriteLine($"{e.gen}, {Genetic.DistanceScore(new Genetic(new Bitmap(pic_origin.Image)).Gen, new Genetic(e.result).Gen)}");
+                sw.Close();
+
+                Status = $"{e.gen} csv save";
+
+                if (check_median.Checked)
+                {
+                    Status = $"{e.gen} median filter...";
+                    MedianFiltering(e.result);
+                    Status = $"{e.gen} median filter";
+                    e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}_Median.png"));
+                }
+            }
+
+            pic_bestsol.Image = e.result;
+            Status = $"{e.gen} gen complete";
+
+
+            if (Global.Stop)
+            {
+                Status = "stop!";
+            }
         }
 
         private void Btn_apply_Click(object sender, EventArgs e)
@@ -230,6 +263,7 @@ namespace WindowsFormsApp1
         private void Button1_Click(object sender, EventArgs e)
         {
             Global.Stop = true;
+            Status = "stop...";
         }
     }
 }

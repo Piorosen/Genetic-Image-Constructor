@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
         {
             Task.Run(() =>
             {
-                for (int i = 0; ; i++)
+                for (int i = 0; !Global.Stop; i++)
                 {
                     for (int y = 0; y < Global.GeneticCutCount.Height; y++)
                     {
