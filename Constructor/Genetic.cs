@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
 
         public int[,] Gen = new int[Height, Width];
 
-        public long DistanceScore(int[,] gen)
+        public static long DistanceScore(int[,] Gen, int[,] gen)
         {
             long result = 0;
             for (int h = 0; h < Height; h++)
@@ -29,10 +29,19 @@ namespace WindowsFormsApp1
             }
             return result;
         }
+        public static long DistanceScore(Genetic Gen, Genetic gen)
+        {
+            return DistanceScore(Gen.Gen, gen.Gen);
+        }
+
 
         public Genetic(int[,] gen)
         {
             Gen = gen.Clone() as int[,];
+        }
+        public Genetic(Genetic gen)
+        {
+            Gen = gen.Gen.Clone() as int[,];
         }
 
         public Genetic(Bitmap image)
@@ -53,7 +62,7 @@ namespace WindowsFormsApp1
             {
                 for (int w = 0; w < Width; w++)
                 {
-                    var avg = rand.Next(byte.MinValue, byte.MaxValue);
+                    var avg = rand.Next(byte.MinValue, byte.MaxValue + 1);
                     Gen[h, w] = avg;
                 }
             }
@@ -63,21 +72,58 @@ namespace WindowsFormsApp1
         /// genetic Average value
         /// </summary>
         /// <param name="gen">another genetic</param>
-        public void Cross(int[,] gen)
+        private static Genetic[] Cross(int[,] Gen, int[,] gen)
         {
+            int pos = rand.Next(0, Width) + rand.Next(0, Height) * Width;
+
+            Genetic[] result = new Genetic[2]
+            {
+                new Genetic(),
+                new Genetic()
+            };
+            CrossType t = Global.CrossType;
+
+            if (Global.CrossType == CrossType.Random)
+            {
+                if (rand.NextDouble() > 0.5)
+                {
+                    t = CrossType.Vertical;
+                }
+                else
+                {
+                    t = CrossType.Horizontal;
+                }
+            }
+
             for (int h = 0; h < Height; h++)
             {
                 for (int w = 0; w < Width; w++)
                 {
-                    int value = (Gen[h, w] + gen[h, w]) / 2;
+                    int a = h, b = w;
+                    if (t == CrossType.Vertical)
+                    {
+                        a = w;
+                        b = h;
+                    }
 
-                    Gen[h, w] = value;
+                    if (h * Width + w < pos)
+                    {
+                        result[0].Gen[a, b] = Gen[a, b];
+                        result[1].Gen[a, b] = gen[a, b];
+                    }
+                    else
+                    {
+                        result[1].Gen[a, b] = Gen[a, b];
+                        result[0].Gen[a, b] = gen[a, b];
+                    }
                 }
             }
+            return result;
         }
-        public void Cross(Genetic gen)
+
+        public static Genetic[] Cross(Genetic Gen, Genetic gen)
         {
-            Cross(gen.Gen);
+            return Cross(Gen.Gen, gen.Gen);
         }
 
         /// <summary>
@@ -86,26 +132,71 @@ namespace WindowsFormsApp1
         /// <param name="rate">rate is 0.00 ~ 1.00</param>
         public void Mutation(double rate)
         {
-            for (int h = 0; h < Height; h++)
+            if (rate >= rand.NextDouble())
             {
-                for (int w = 0; w < Width; w++)
+                int count = rand.Next(1, Global.MutationMaxCount);
+
+                for (int i = 0; i < count; i++)
                 {
-                    if (rate >= rand.NextDouble())
+                    int y = rand.Next(Global.MutationPointSize, Height - Global.MutationPointSize);
+                    int x = rand.Next(Global.MutationPointSize, Width - Global.MutationPointSize);
+
+                    if (Global.MutationOver)
                     {
-                        for (int y = -Global.MutationPointSize + h; y < 1 + h + Global.MutationPointSize; y++)
+                        y = rand.Next(0, Height);
+                        x = rand.Next(0, Width);
+                    }
+                   
+                    int value = rand.Next(byte.MinValue, byte.MaxValue + 1);
+                    for (int h = -Global.MutationPointSize + y; h < 1 + y + Global.MutationPointSize; h++)
+                    {
+                        for (int w = -Global.MutationPointSize + x; w < 1 + x + Global.MutationPointSize; w++)
                         {
-                            for (int x = -Global.MutationPointSize + w; x < 1 + w + Global.MutationPointSize; x++)
+                            if (0 <= h && h < Height
+                                       && 0 <= w && w < Width)
                             {
-                                if (0 <= y && y < Height
-                                    && 0 <= x && x < Width)
+                                if (Global.MutationRangeRandom)
                                 {
-                                    Gen[y, x] = rand.Next(byte.MinValue, byte.MaxValue);
+                                    Gen[h, w] = rand.Next(byte.MinValue, byte.MaxValue + 1);
+                                }
+                                else
+                                {
+                                    Gen[h, w] = value;
                                 }
                             }
                         }
                     }
                 }
             }
+            #region Comment
+            //for (int h = 0; h < Height; h++)
+            //{
+            //    for (int w = 0; w < Width; w++)
+            //    {
+            //        if (rate >= rand.NextDouble())
+            //        {
+            //            int count = rand.Next(1, Global.MutationMaxCount);
+            //            for (int i = 0; i < count; i++)
+            //            {
+            //                int y = rand.Next(0, Height);
+            //                int x = rand.Next(0, Width);
+            //                Gen[y,x] = rand.Next(byte.MinValue, byte.MaxValue + 1);
+            //            }
+            //            //for (int y = -Global.MutationPointSize + h; y < 1 + h + Global.MutationPointSize; y++)
+            //            //{
+            //            //    for (int x = -Global.MutationPointSize + w; x < 1 + w + Global.MutationPointSize; x++)
+            //            //    {
+            //            //        if (0 <= y && y < Height
+            //            //            && 0 <= x && x < Width)
+            //            //        {
+            //            //            Gen[y, x] = rand.Next(byte.MinValue, byte.MaxValue);
+            //            //        }
+            //            //    }
+            //            //}
+            //        }
+            //    }
+            //}
+            #endregion
         }
 
 

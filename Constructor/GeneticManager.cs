@@ -25,13 +25,8 @@ namespace WindowsFormsApp1
             }
         }
 
-        public GeneticManager(Bitmap origin, int count, double mutation, int survive, int crossCount)
+        public GeneticManager(Bitmap origin)
         {
-            Global.Count = count;
-            Global.Mutation = mutation;
-            Global.Survive = survive;
-            Global.CrossCount = crossCount;
-
             for (int by = 0; by < Global.GeneticCutCount.Height; by++)
             {
                 for (int bx = 0; bx < Global.GeneticCutCount.Width; bx++)

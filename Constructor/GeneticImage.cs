@@ -11,10 +11,10 @@ namespace WindowsFormsApp1
     {
         public event EventHandler<(Bitmap, Point)> BestGenImage;
 
-        readonly List<Genetic> Gray = new List<Genetic>();
-        readonly List<Genetic> Red = new List<Genetic>();
-        readonly List<Genetic> Green = new List<Genetic>();
-        readonly List<Genetic> Blue = new List<Genetic>();
+        List<Genetic> Gray = new List<Genetic>();
+        List<Genetic> Red = new List<Genetic>();
+        List<Genetic> Green = new List<Genetic>();
+        List<Genetic> Blue = new List<Genetic>();
 
         List<int[,]> ColorList = new List<int[,]>();
 
@@ -29,20 +29,23 @@ namespace WindowsFormsApp1
 
             position = pos;
 
-            for (int i = 0; i < Global.Count; i++)
+            if (Global.GrayScale == true)
             {
-                if (Global.GrayScale == true)
+                for (int i = 0; i < Global.Count; i++)
                 {
                     Gray.Add(new Genetic());
                 }
-                else
+            }
+            else
+            {
+                for (int i = 0; i < Global.Count; i++)
                 {
                     Red.Add(new Genetic());
                     Green.Add(new Genetic());
                     Blue.Add(new Genetic());
                 }
             }
-
+            
         }
         
         private Bitmap GenerateBitmap()
@@ -71,109 +74,165 @@ namespace WindowsFormsApp1
             return image;
         }
 
+
         public void Run()
         {
             if (Global.GrayScale == true)
             {
-                Gray.Sort((a, b) => a.DistanceScore(ColorList[0]) < b.DistanceScore(ColorList[0])
-                                     ? -1 : 1);
+                GeneticSort(0, Gray);
             }
             else
             {
-                Red.Sort((a, b) => a.DistanceScore(ColorList[1]) < b.DistanceScore(ColorList[1])
-                                     ? -1 : 1);
-                Green.Sort((a, b) => a.DistanceScore(ColorList[2]) < b.DistanceScore(ColorList[2])
-                                         ? -1 : 1);
-                Blue.Sort((a, b) => a.DistanceScore(ColorList[3]) < b.DistanceScore(ColorList[3])
-                                         ? -1 : 1);
+                GeneticSort(1, Red, Green, Blue);
             }
             
-
             BestGenImage?.Invoke(this, (GenerateBitmap(), position));
 
-            Survive();
-            CrossGenetic();
-            Mutation();
+            NextGen();
+            
         }
 
-        private void Survive()
+        private void GeneticSort(int start, params List<Genetic>[] data)
         {
-            for (int e = Global.Count - 1; e >= Global.Survive; e--)
+            foreach(var value in data)
             {
-                if (Global.GrayScale == true)
-                {
-                    Gray.RemoveAt(e);
-                }
-                else
-                {
-                    Red.RemoveAt(e);
-                    Green.RemoveAt(e);
-                    Blue.RemoveAt(e);
-                }
+                value.Sort((a, b) => Genetic.DistanceScore(a.Gen, ColorList[start]) < Genetic.DistanceScore(b.Gen, ColorList[start])
+                                     ? -1 : 1);
+                start++;
             }
+        }
 
-            var rate = ((double)(Global.Count - Global.Survive) / (double)Global.Survive);
-
-            for (int y = 0; y < Global.Survive; y++)
-            {
-                for (int i = 0; i < rate; i++)
-                {
-                    if (Global.GrayScale == true)
-                    {
-                        Gray.Add(new Genetic(Gray[y].Gen));
-                    }
-                    else
-                    {
-                        Red.Add(new Genetic(Red[y].Gen));
-                        Green.Add(new Genetic(Green[y].Gen));
-                        Blue.Add(new Genetic(Blue[y].Gen));
-                    }
-                }
-            }
+        /// <summary>
+        /// 이전이름 : Survive
+        /// </summary>
+        private void NextGen()
+        {
             if (Global.GrayScale == true)
             {
-                for (int i = Gray.Count; i < Global.Count; i++)
-                {
-                    Gray.Add(new Genetic(Gray[Global.Survive - 1].Gen));
-                }
+                Gray = CrossGenetic(Gray);
             }
             else
             {
-                for (int i = Red.Count; i < Global.Count; i++)
-                {
-                    Red.Add(new Genetic(Red[Global.Survive - 1].Gen));
-                    Green.Add(new Genetic(Green[Global.Survive - 1].Gen));
-                    Blue.Add(new Genetic(Blue[Global.Survive - 1].Gen));
-                }
+                Red = CrossGenetic(Red);
+                Blue = CrossGenetic(Blue);
+                Green = CrossGenetic(Green);
             }
+
+            Mutation();
+
+            #region Comment
+            //for (int e = Global.Count - 1; e >= Global.Survive; e--)
+            //{
+            //    if (Global.GrayScale == true)
+            //    {
+            //        Gray.RemoveAt(e);
+            //    }
+            //    else
+            //    {
+            //        Red.RemoveAt(e);
+            //        Green.RemoveAt(e);
+            //        Blue.RemoveAt(e);
+            //    }
+            //}
+            //var rate = ((double)(Global.Count - Global.Survive) / (double)Global.Survive);
+            //for (int y = 0; y < Global.Survive; y++)
+            //{
+            //    for (int i = 0; i < rate; i++)
+            //    {
+            //        if (Global.GrayScale == true)
+            //        {
+            //            Gray.Add(new Genetic(Gray[y].Gen));
+            //        }
+            //        else
+            //        {
+            //            Red.Add(new Genetic(Red[y]));
+            //            Green.Add(new Genetic(Green[y]));
+            //            Blue.Add(new Genetic(Blue[y]));
+            //        }
+            //    }
+            //}
+            //if (Global.GrayScale == true)
+            //{
+            //    for (int i = Gray.Count; i < Global.Count; i++)
+            //    {
+            //        Gray.Add(new Genetic(Gray[Global.Survive - 1].Gen));
+            //    }
+            //}
+            //else
+            //{
+            //    for (int i = Red.Count; i < Global.Count; i++)
+            //    {
+            //        Red.Add(new Genetic(Red[Global.Survive - 1].Gen));
+            //        Green.Add(new Genetic(Green[Global.Survive - 1].Gen));
+            //        Blue.Add(new Genetic(Blue[Global.Survive - 1].Gen));
+            //    }
+            //}
+            #endregion
         }
 
-        private void CrossGenetic()
+        private List<Genetic> CrossGenetic(List<Genetic> gen)
         {
-            for (int i = 0; i < Global.CrossCount; i++)
+            var result = new List<Genetic>();
+
+            for (int i = 0; i < Global.EliteSurvive; i++)
             {
-                if (Global.GrayScale == true)
-                {
-                    for (int g = 0; g < Gray.Count; g += i + 1)
-                    {
-                        Gray[g].Cross(Gray[i]);
-                    }
-                }
-                else
-                {
-                    for (int g = 0; g < Red.Count; g += i + 1)
-                    {
-                        Red[g].Cross(Red[i]);
-                        Green[g].Cross(Green[i]);
-                        Blue[g].Cross(Blue[i]);
-                    }
-                }                
+                result.Add(gen[i]);
             }
+            result.AddRange(Genetic.Cross(gen[0], gen[2]));
+            result.AddRange(Genetic.Cross(gen[0], gen[5]));
+            result.AddRange(Genetic.Cross(gen[0], gen[10]));
+            result.AddRange(Genetic.Cross(gen[0], gen[18]));
+            result.AddRange(Genetic.Cross(gen[0], gen[27]));
+            result.AddRange(Genetic.Cross(gen[0], gen[40]));
+
+            result.AddRange(Genetic.Cross(gen[1], gen[4]));
+            result.AddRange(Genetic.Cross(gen[1], gen[11]));
+            result.AddRange(Genetic.Cross(gen[1], gen[20]));
+            result.AddRange(Genetic.Cross(gen[1], gen[30]));
+            result.AddRange(Genetic.Cross(gen[1], gen[45]));
+
+            result.AddRange(Genetic.Cross(gen[2], gen[7]));
+            result.AddRange(Genetic.Cross(gen[2], gen[13]));
+            result.AddRange(Genetic.Cross(gen[2], gen[23]));
+            result.AddRange(Genetic.Cross(gen[2], gen[43]));
+
+            result.AddRange(Genetic.Cross(gen[4], gen[17]));
+            result.AddRange(Genetic.Cross(gen[4], gen[28]));
+            result.AddRange(Genetic.Cross(gen[4], gen[34]));
+
+            result.AddRange(Genetic.Cross(gen[9], gen[15]));
+            result.AddRange(Genetic.Cross(gen[9], gen[24]));
+            result.AddRange(Genetic.Cross(gen[9], gen[36]));
+
+            result.AddRange(Genetic.Cross(gen[14], gen[34]));
+            result.AddRange(Genetic.Cross(gen[14], gen[46]));
+
+            result.AddRange(Genetic.Cross(gen[19], gen[48]));
+
+            #region Comment
+            //for (int i = 0; i < Global.EliteSurvive; i++)
+            //{
+            //    for (int g = 0; g < gen.Count; g += i + 2)
+            //    {
+            //        result.AddRange(Genetic.Cross(gen[g], gen[i]));
+            //    }
+            //    if (result.Count > Global.Count)
+            //    {
+            //        while (result.Count > Global.Count)
+            //        {
+            //            result.RemoveAt(Global.Count);
+            //        }
+            //        break;
+            //    }
+            //}
+            #endregion
+           
+            return result;
         }
 
         private void Mutation()
         {
-            for (int i = 0; i < Global.Count; i++)
+            for (int i = Global.EliteSurvive; i < Global.Count; i++)
             {
                 if (Global.GrayScale == true)
                 {
@@ -187,7 +246,5 @@ namespace WindowsFormsApp1
                 }
             }
         }
-
-        
     }
 }

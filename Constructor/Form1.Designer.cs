@@ -28,246 +28,271 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picOrigin = new System.Windows.Forms.PictureBox();
-            this.picGenetic = new System.Windows.Forms.PictureBox();
-            this.btnExecute = new System.Windows.Forms.Button();
-            this.labelGenCount = new System.Windows.Forms.Label();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.textLoadPath = new System.Windows.Forms.TextBox();
-            this.groupBox = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textCrossCount = new System.Windows.Forms.TextBox();
-            this.textSurvive = new System.Windows.Forms.TextBox();
-            this.textMutation = new System.Windows.Forms.TextBox();
-            this.textCount = new System.Windows.Forms.TextBox();
-            this.optionGrayScale = new System.Windows.Forms.CheckBox();
-            this.textName = new System.Windows.Forms.TextBox();
-            this.textResult = new System.Windows.Forms.TextBox();
-            this.optionMedianFilter = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.picOrigin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGenetic)).BeginInit();
-            this.groupBox.SuspendLayout();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // picOrigin
+            // textBox1
             // 
-            this.picOrigin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picOrigin.Location = new System.Drawing.Point(12, 25);
-            this.picOrigin.Name = "picOrigin";
-            this.picOrigin.Size = new System.Drawing.Size(256, 256);
-            this.picOrigin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picOrigin.TabIndex = 0;
-            this.picOrigin.TabStop = false;
+            this.textBox1.Location = new System.Drawing.Point(12, 262);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(296, 21);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "..\\test.jpg";
             // 
-            // picGenetic
+            // button1
             // 
-            this.picGenetic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picGenetic.Location = new System.Drawing.Point(360, 25);
-            this.picGenetic.Name = "picGenetic";
-            this.picGenetic.Size = new System.Drawing.Size(256, 256);
-            this.picGenetic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picGenetic.TabIndex = 1;
-            this.picGenetic.TabStop = false;
+            this.button1.Location = new System.Drawing.Point(314, 260);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(37, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "find";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnExecute
+            // textBox2
             // 
-            this.btnExecute.Location = new System.Drawing.Point(360, 312);
-            this.btnExecute.Name = "btnExecute";
-            this.btnExecute.Size = new System.Drawing.Size(75, 23);
-            this.btnExecute.TabIndex = 2;
-            this.btnExecute.Text = "Execute";
-            this.btnExecute.UseVisualStyleBackColor = true;
-            this.btnExecute.Click += new System.EventHandler(this.btnExecute_Click);
+            this.textBox2.Location = new System.Drawing.Point(12, 347);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(296, 21);
+            this.textBox2.TabIndex = 2;
+            this.textBox2.Text = "..\\run";
             // 
-            // labelGenCount
+            // button2
             // 
-            this.labelGenCount.AutoSize = true;
-            this.labelGenCount.Location = new System.Drawing.Point(358, 297);
-            this.labelGenCount.Name = "labelGenCount";
-            this.labelGenCount.Size = new System.Drawing.Size(38, 12);
-            this.labelGenCount.TabIndex = 3;
-            this.labelGenCount.Text = "0 Gen";
-            // 
-            // btnLoad
-            // 
-            this.btnLoad.Location = new System.Drawing.Point(193, 341);
-            this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(75, 23);
-            this.btnLoad.TabIndex = 4;
-            this.btnLoad.Text = "Load Image";
-            this.btnLoad.UseVisualStyleBackColor = true;
-            this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
-            // 
-            // textLoadPath
-            // 
-            this.textLoadPath.Location = new System.Drawing.Point(12, 294);
-            this.textLoadPath.Multiline = true;
-            this.textLoadPath.Name = "textLoadPath";
-            this.textLoadPath.Size = new System.Drawing.Size(256, 41);
-            this.textLoadPath.TabIndex = 5;
-            this.textLoadPath.Text = "C:\\Users\\aoika\\Desktop\\MyImage.png";
-            // 
-            // groupBox
-            // 
-            this.groupBox.Controls.Add(this.label4);
-            this.groupBox.Controls.Add(this.label3);
-            this.groupBox.Controls.Add(this.label2);
-            this.groupBox.Controls.Add(this.label1);
-            this.groupBox.Controls.Add(this.textCrossCount);
-            this.groupBox.Controls.Add(this.textSurvive);
-            this.groupBox.Controls.Add(this.textMutation);
-            this.groupBox.Controls.Add(this.textCount);
-            this.groupBox.Controls.Add(this.optionGrayScale);
-            this.groupBox.Location = new System.Drawing.Point(360, 341);
-            this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(310, 207);
-            this.groupBox.TabIndex = 6;
-            this.groupBox.TabStop = false;
-            this.groupBox.Text = "Option";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 126);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 12);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "CrossCount";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 99);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 12);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Survive";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Mutation";
+            this.button2.Location = new System.Drawing.Point(314, 345);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(37, 23);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "find";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 45);
+            this.label1.Location = new System.Drawing.Point(12, 247);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 12);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "Count";
+            this.label1.Size = new System.Drawing.Size(68, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "image path";
             // 
-            // textCrossCount
+            // label2
             // 
-            this.textCrossCount.Location = new System.Drawing.Point(100, 123);
-            this.textCrossCount.Name = "textCrossCount";
-            this.textCrossCount.Size = new System.Drawing.Size(191, 21);
-            this.textCrossCount.TabIndex = 12;
-            this.textCrossCount.Text = "3";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 332);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 12);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "save folder path";
             // 
-            // textSurvive
+            // label3
             // 
-            this.textSurvive.Location = new System.Drawing.Point(100, 96);
-            this.textSurvive.Name = "textSurvive";
-            this.textSurvive.Size = new System.Drawing.Size(191, 21);
-            this.textSurvive.TabIndex = 11;
-            this.textSurvive.Text = "10";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 386);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "csv path";
             // 
-            // textMutation
+            // button3
             // 
-            this.textMutation.Location = new System.Drawing.Point(100, 69);
-            this.textMutation.Name = "textMutation";
-            this.textMutation.Size = new System.Drawing.Size(191, 21);
-            this.textMutation.TabIndex = 10;
-            this.textMutation.Text = "0.01";
+            this.button3.Location = new System.Drawing.Point(312, 399);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(37, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "find";
+            this.button3.UseVisualStyleBackColor = true;
             // 
-            // textCount
+            // textBox3
             // 
-            this.textCount.Location = new System.Drawing.Point(100, 42);
-            this.textCount.Name = "textCount";
-            this.textCount.Size = new System.Drawing.Size(191, 21);
-            this.textCount.TabIndex = 9;
-            this.textCount.Text = "50";
+            this.textBox3.Location = new System.Drawing.Point(10, 401);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(296, 21);
+            this.textBox3.TabIndex = 6;
+            this.textBox3.Text = "..\\run\\result.csv";
             // 
-            // optionGrayScale
+            // checkBox1
             // 
-            this.optionGrayScale.AutoSize = true;
-            this.optionGrayScale.Checked = true;
-            this.optionGrayScale.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.optionGrayScale.Location = new System.Drawing.Point(6, 20);
-            this.optionGrayScale.Name = "optionGrayScale";
-            this.optionGrayScale.Size = new System.Drawing.Size(99, 16);
-            this.optionGrayScale.TabIndex = 8;
-            this.optionGrayScale.Text = "Change Gray";
-            this.optionGrayScale.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(10, 304);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(52, 16);
+            this.checkBox1.TabIndex = 9;
+            this.checkBox1.Text = "Save";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // textName
+            // pictureBox1
             // 
-            this.textName.Location = new System.Drawing.Point(12, 379);
-            this.textName.Name = "textName";
-            this.textName.Size = new System.Drawing.Size(256, 21);
-            this.textName.TabIndex = 7;
-            this.textName.Text = "Test1";
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(339, 211);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
-            // textResult
+            // button4
             // 
-            this.textResult.Location = new System.Drawing.Point(12, 411);
-            this.textResult.Multiline = true;
-            this.textResult.Name = "textResult";
-            this.textResult.Size = new System.Drawing.Size(256, 41);
-            this.textResult.TabIndex = 8;
-            this.textResult.Text = "C:\\Users\\aoika\\Desktop\\result.csv";
+            this.button4.Location = new System.Drawing.Point(5, 437);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "apply";
+            this.button4.UseVisualStyleBackColor = true;
             // 
-            // optionMedianFilter
+            // button5
             // 
-            this.optionMedianFilter.AutoSize = true;
-            this.optionMedianFilter.Location = new System.Drawing.Point(46, 466);
-            this.optionMedianFilter.Name = "optionMedianFilter";
-            this.optionMedianFilter.Size = new System.Drawing.Size(114, 16);
-            this.optionMedianFilter.TabIndex = 9;
-            this.optionMedianFilter.Text = "Median Filtering";
-            this.optionMedianFilter.UseVisualStyleBackColor = true;
+            this.button5.Location = new System.Drawing.Point(86, 437);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(96, 23);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "setting save";
+            this.button5.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // pictureBox2
             // 
-            this.button1.Location = new System.Drawing.Point(86, 489);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.pictureBox2.Location = new System.Drawing.Point(399, 10);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(339, 211);
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(397, 247);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 12);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "origin image size";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(399, 261);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(275, 21);
+            this.textBox4.TabIndex = 15;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(622, 518);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(116, 23);
+            this.button6.TabIndex = 16;
+            this.button6.Text = "setting save";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(541, 518);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 17;
+            this.button7.Text = "apply";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(399, 299);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(275, 21);
+            this.textBox5.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(397, 285);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(50, 12);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "cut size";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(399, 337);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(275, 21);
+            this.textBox6.TabIndex = 21;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(397, 323);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 12);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "origin image size";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(399, 375);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(275, 21);
+            this.textBox7.TabIndex = 23;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(397, 361);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 12);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "gray scale";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(750, 553);
+            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.optionMedianFilter);
-            this.Controls.Add(this.textResult);
-            this.Controls.Add(this.textName);
-            this.Controls.Add(this.groupBox);
-            this.Controls.Add(this.textLoadPath);
-            this.Controls.Add(this.btnLoad);
-            this.Controls.Add(this.labelGenCount);
-            this.Controls.Add(this.btnExecute);
-            this.Controls.Add(this.picGenetic);
-            this.Controls.Add(this.picOrigin);
+            this.Controls.Add(this.textBox1);
             this.Name = "Form1";
             this.Text = "Genetic";
-            ((System.ComponentModel.ISupportInitialize)(this.picOrigin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picGenetic)).EndInit();
-            this.groupBox.ResumeLayout(false);
-            this.groupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,26 +300,30 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox picOrigin;
-        private System.Windows.Forms.PictureBox picGenetic;
-        private System.Windows.Forms.Button btnExecute;
-        private System.Windows.Forms.Label labelGenCount;
-        private System.Windows.Forms.Button btnLoad;
-        private System.Windows.Forms.TextBox textLoadPath;
-        private System.Windows.Forms.GroupBox groupBox;
-        private System.Windows.Forms.TextBox textName;
-        private System.Windows.Forms.CheckBox optionGrayScale;
-        private System.Windows.Forms.TextBox textCount;
-        private System.Windows.Forms.TextBox textCrossCount;
-        private System.Windows.Forms.TextBox textSurvive;
-        private System.Windows.Forms.TextBox textMutation;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textResult;
-        private System.Windows.Forms.CheckBox optionMedianFilter;
+        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label7;
     }
 }
 
