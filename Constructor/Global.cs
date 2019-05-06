@@ -31,6 +31,8 @@ namespace WindowsFormsApp1
 
         // 교배할 상위종 갯수
         public static int EliteSurvive = 2;
+
+        public static bool Stop = false;
     }
 
     public enum CrossType : int

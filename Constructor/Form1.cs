@@ -14,6 +14,14 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        string Status
+        {
+            set
+            {
+                label_status.Text = $"Status : {value}"; 
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -79,6 +87,7 @@ namespace WindowsFormsApp1
 
         private void find_Click(object sender, EventArgs e)
         {
+            Status = "find file...";
             string name = "text_" + (sender as Control).Name.Split('_')[1];
 
             var obj = GetType().GetField(name, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
@@ -89,18 +98,22 @@ namespace WindowsFormsApp1
             {
                 obj.GetType().GetProperty("Text").SetValue(obj, ofd.FileName);
             }
+            Status = "find";
         }
 
         private void Btn_settingsave_Click(object sender, EventArgs e)
         {
+            Status = "Base Conf Save...";
             Config.SetOption("Base Conf", "image", text_image.Text);
             Config.SetOption("Base Conf", "savefolder", text_savefolder.Text);
             Config.SetOption("Base Conf", "csv", text_csv.Text);
             Config.SetOption("Base Conf", "bsave", check_save.Checked.ToString());
             Config.SetOption("Base Conf", "bmedian", check_median.Checked.ToString());
+            Status = "Base Conf Save";
         }
         private void Btn_runsetsave_Click(object sender, EventArgs e)
         {
+            Status = "execute setting save...";
             Config.SetOption("execute", "originsize", text_originsize.Text);
             Config.SetOption("execute", "cutsize", text_cutsize.Text);
             Config.SetOption("execute", "crosstype", text_crosstype.Text);
@@ -112,7 +125,7 @@ namespace WindowsFormsApp1
             Config.SetOption("execute", "mutmaxcount", text_mutmaxcount.Text);
             Config.SetOption("execute", "mutpercent", text_mutpercent.Text);
             Config.SetOption("execute", "elite", text_elite.Text);
-
+            Status = "execute setting save";
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -149,10 +162,16 @@ namespace WindowsFormsApp1
         {
             if (pic_origin.Image == null)
             {
+                Status = "execute fail";
                 MessageBox.Show("not found image");
             }
             else
             {
+                Status = "execute";
+                text_grayscale.Enabled = false;
+                text_grayscale.BackColor = Color.Gray;
+                Global.Stop = false;
+
                 GeneticManager gm = new GeneticManager(new Bitmap(pic_origin.Image));
                 gm.BestGenImage += Gm_BestGenImage;
                 gm.Run();
@@ -169,33 +188,48 @@ namespace WindowsFormsApp1
             try
             {
                 pic_origin.Image = new Bitmap(text_image.Text);
+                Status = "setting apply";
             }
             catch
             {
                 pic_origin.Image = null;
+                Status = "setting apply fail";
                 MessageBox.Show("not found image");
             }
         }
 
         private void Btn_runapply_Click(object sender, EventArgs e)
         {
-            var size = text_originsize.Text.Split(',');
-            Global.OriginImageSize = new Size(int.Parse(size[0].Trim('{', '}', ' ')), int.Parse(size[1].Trim('{', '}', ' ')));
-            size = text_cutsize.Text.Split(',');
-            Global.GeneticCutCount = new Size(int.Parse(size[0].Trim('{', '}', ' ')), int.Parse(size[1].Trim('{', '}', ' ')));
-            Global.CrossType = (CrossType)int.Parse(text_crosstype.Text);
-            Global.GrayScale = bool.Parse(text_grayscale.Text);
+            Status = "execute setting apply...";
+            try
+            {
+                var size = text_originsize.Text.Split(',');
+                Global.OriginImageSize = new Size(int.Parse(size[0].Trim('{', '}', ' ')), int.Parse(size[1].Trim('{', '}', ' ')));
+                size = text_cutsize.Text.Split(',');
+                Global.GeneticCutCount = new Size(int.Parse(size[0].Trim('{', '}', ' ')), int.Parse(size[1].Trim('{', '}', ' ')));
+                Global.CrossType = (CrossType)int.Parse(text_crosstype.Text);
+                Global.GrayScale = bool.Parse(text_grayscale.Text);
 
-            Global.MutationPointSize = int.Parse(text_mutsize.Text);
-            Global.MutationRangeRandom = bool.Parse(text_mutrange.Text);
+                Global.MutationPointSize = int.Parse(text_mutsize.Text);
+                Global.MutationRangeRandom = bool.Parse(text_mutrange.Text);
 
-            Global.MutationMaxCount = int.Parse(text_mutmaxcount.Text);
-            Global.MutationOver = bool.Parse(text_mutoverchange.Text);
-            Global.Mutation = int.Parse(text_mutpercent.Text);
+                Global.MutationMaxCount = int.Parse(text_mutmaxcount.Text);
+                Global.MutationOver = bool.Parse(text_mutoverchange.Text);
+                Global.Mutation = double.Parse(text_mutpercent.Text);
 
-            Global.EliteSurvive = int.Parse(text_elite.Text);
+                Global.EliteSurvive = int.Parse(text_elite.Text);
+                Status = "execute setting apply";
+            }
+            catch
+            {
+                MessageBox.Show("check your setting");
+                Status = "execute setting fail";
+            }
+        }
 
-
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Global.Stop = true;
         }
     }
 }

@@ -66,8 +66,8 @@
             this.check_median = new System.Windows.Forms.CheckBox();
             this.btn_apply = new System.Windows.Forms.Button();
             this.btn_run = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
+            this.btn_stop = new System.Windows.Forms.Button();
+            this.label_status = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pic_origin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_bestsol)).BeginInit();
             this.SuspendLayout();
@@ -413,31 +413,32 @@
             this.btn_run.UseVisualStyleBackColor = true;
             this.btn_run.Click += new System.EventHandler(this.Btn_run_Click);
             // 
-            // button1
+            // btn_stop
             // 
-            this.button1.Location = new System.Drawing.Point(269, 527);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "stop";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_stop.Location = new System.Drawing.Point(269, 527);
+            this.btn_stop.Name = "btn_stop";
+            this.btn_stop.Size = new System.Drawing.Size(75, 23);
+            this.btn_stop.TabIndex = 38;
+            this.btn_stop.Text = "stop";
+            this.btn_stop.UseVisualStyleBackColor = true;
+            this.btn_stop.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // label14
+            // label_status
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 570);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 12);
-            this.label14.TabIndex = 39;
-            this.label14.Text = "Status : none";
+            this.label_status.AutoSize = true;
+            this.label_status.Location = new System.Drawing.Point(8, 570);
+            this.label_status.Name = "label_status";
+            this.label_status.Size = new System.Drawing.Size(80, 12);
+            this.label_status.TabIndex = 39;
+            this.label_status.Text = "Status : none";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(667, 629);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label_status);
+            this.Controls.Add(this.btn_stop);
             this.Controls.Add(this.btn_run);
             this.Controls.Add(this.check_median);
             this.Controls.Add(this.text_mutpercent);
@@ -526,8 +527,8 @@
         private System.Windows.Forms.CheckBox check_median;
         private System.Windows.Forms.Button btn_apply;
         private System.Windows.Forms.Button btn_run;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btn_stop;
+        private System.Windows.Forms.Label label_status;
     }
 }
 
