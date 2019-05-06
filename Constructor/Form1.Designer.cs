@@ -39,12 +39,10 @@
             this.text_csv = new System.Windows.Forms.TextBox();
             this.check_save = new System.Windows.Forms.CheckBox();
             this.pic_origin = new System.Windows.Forms.PictureBox();
-            this.btn_settingsave = new System.Windows.Forms.Button();
             this.pic_bestsol = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.text_originsize = new System.Windows.Forms.TextBox();
             this.btn_runsetsave = new System.Windows.Forms.Button();
-            this.btn_runapply = new System.Windows.Forms.Button();
             this.text_cutsize = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.text_crosstype = new System.Windows.Forms.TextBox();
@@ -77,7 +75,7 @@
             // text_image
             // 
             this.text_image.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.text_image.Location = new System.Drawing.Point(6, 335);
+            this.text_image.Location = new System.Drawing.Point(16, 335);
             this.text_image.Name = "text_image";
             this.text_image.Size = new System.Drawing.Size(296, 21);
             this.text_image.TabIndex = 0;
@@ -86,7 +84,7 @@
             // btn_image
             // 
             this.btn_image.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_image.Location = new System.Drawing.Point(308, 333);
+            this.btn_image.Location = new System.Drawing.Point(318, 333);
             this.btn_image.Name = "btn_image";
             this.btn_image.Size = new System.Drawing.Size(37, 23);
             this.btn_image.TabIndex = 1;
@@ -97,7 +95,7 @@
             // text_savefolder
             // 
             this.text_savefolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.text_savefolder.Location = new System.Drawing.Point(6, 420);
+            this.text_savefolder.Location = new System.Drawing.Point(16, 420);
             this.text_savefolder.Name = "text_savefolder";
             this.text_savefolder.Size = new System.Drawing.Size(296, 21);
             this.text_savefolder.TabIndex = 2;
@@ -106,7 +104,7 @@
             // btn_savefolder
             // 
             this.btn_savefolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_savefolder.Location = new System.Drawing.Point(308, 418);
+            this.btn_savefolder.Location = new System.Drawing.Point(318, 418);
             this.btn_savefolder.Name = "btn_savefolder";
             this.btn_savefolder.Size = new System.Drawing.Size(37, 23);
             this.btn_savefolder.TabIndex = 3;
@@ -118,7 +116,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 320);
+            this.label1.Location = new System.Drawing.Point(16, 320);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 12);
             this.label1.TabIndex = 4;
@@ -128,7 +126,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 405);
+            this.label2.Location = new System.Drawing.Point(14, 405);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 12);
             this.label2.TabIndex = 5;
@@ -138,7 +136,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 459);
+            this.label3.Location = new System.Drawing.Point(14, 459);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 8;
@@ -147,7 +145,7 @@
             // btn_csv
             // 
             this.btn_csv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_csv.Location = new System.Drawing.Point(306, 472);
+            this.btn_csv.Location = new System.Drawing.Point(316, 472);
             this.btn_csv.Name = "btn_csv";
             this.btn_csv.Size = new System.Drawing.Size(37, 23);
             this.btn_csv.TabIndex = 7;
@@ -158,7 +156,7 @@
             // text_csv
             // 
             this.text_csv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.text_csv.Location = new System.Drawing.Point(4, 474);
+            this.text_csv.Location = new System.Drawing.Point(14, 474);
             this.text_csv.Name = "text_csv";
             this.text_csv.Size = new System.Drawing.Size(296, 21);
             this.text_csv.TabIndex = 6;
@@ -170,7 +168,7 @@
             this.check_save.AutoSize = true;
             this.check_save.Checked = true;
             this.check_save.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.check_save.Location = new System.Drawing.Point(4, 377);
+            this.check_save.Location = new System.Drawing.Point(14, 377);
             this.check_save.Name = "check_save";
             this.check_save.Size = new System.Drawing.Size(52, 16);
             this.check_save.TabIndex = 9;
@@ -188,17 +186,6 @@
             this.pic_origin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pic_origin.TabIndex = 10;
             this.pic_origin.TabStop = false;
-            // 
-            // btn_settingsave
-            // 
-            this.btn_settingsave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_settingsave.Location = new System.Drawing.Point(80, 510);
-            this.btn_settingsave.Name = "btn_settingsave";
-            this.btn_settingsave.Size = new System.Drawing.Size(96, 23);
-            this.btn_settingsave.TabIndex = 12;
-            this.btn_settingsave.Text = "setting save";
-            this.btn_settingsave.UseVisualStyleBackColor = true;
-            this.btn_settingsave.Click += new System.EventHandler(this.Btn_settingsave_Click);
             // 
             // pic_bestsol
             // 
@@ -241,17 +228,6 @@
             this.btn_runsetsave.Text = "setting save";
             this.btn_runsetsave.UseVisualStyleBackColor = true;
             this.btn_runsetsave.Click += new System.EventHandler(this.Btn_runsetsave_Click);
-            // 
-            // btn_runapply
-            // 
-            this.btn_runapply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_runapply.Location = new System.Drawing.Point(440, 605);
-            this.btn_runapply.Name = "btn_runapply";
-            this.btn_runapply.Size = new System.Drawing.Size(75, 23);
-            this.btn_runapply.TabIndex = 17;
-            this.btn_runapply.Text = "apply";
-            this.btn_runapply.UseVisualStyleBackColor = true;
-            this.btn_runapply.Click += new System.EventHandler(this.Btn_runapply_Click);
             // 
             // text_cutsize
             // 
@@ -428,7 +404,7 @@
             // 
             this.check_median.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.check_median.AutoSize = true;
-            this.check_median.Location = new System.Drawing.Point(62, 377);
+            this.check_median.Location = new System.Drawing.Point(72, 377);
             this.check_median.Name = "check_median";
             this.check_median.Size = new System.Drawing.Size(93, 16);
             this.check_median.TabIndex = 36;
@@ -438,7 +414,7 @@
             // btn_apply
             // 
             this.btn_apply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_apply.Location = new System.Drawing.Point(-1, 510);
+            this.btn_apply.Location = new System.Drawing.Point(440, 605);
             this.btn_apply.Name = "btn_apply";
             this.btn_apply.Size = new System.Drawing.Size(75, 23);
             this.btn_apply.TabIndex = 11;
@@ -449,7 +425,7 @@
             // btn_run
             // 
             this.btn_run.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_run.Location = new System.Drawing.Point(182, 510);
+            this.btn_run.Location = new System.Drawing.Point(177, 513);
             this.btn_run.Name = "btn_run";
             this.btn_run.Size = new System.Drawing.Size(75, 23);
             this.btn_run.TabIndex = 37;
@@ -460,7 +436,7 @@
             // btn_stop
             // 
             this.btn_stop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_stop.Location = new System.Drawing.Point(263, 510);
+            this.btn_stop.Location = new System.Drawing.Point(258, 513);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(75, 23);
             this.btn_stop.TabIndex = 38;
@@ -472,7 +448,7 @@
             // 
             this.label_status.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label_status.AutoSize = true;
-            this.label_status.Location = new System.Drawing.Point(2, 553);
+            this.label_status.Location = new System.Drawing.Point(12, 553);
             this.label_status.Name = "label_status";
             this.label_status.Size = new System.Drawing.Size(80, 12);
             this.label_status.TabIndex = 39;
@@ -525,11 +501,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.text_cutsize);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btn_runapply);
             this.Controls.Add(this.btn_runsetsave);
             this.Controls.Add(this.text_originsize);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btn_settingsave);
             this.Controls.Add(this.btn_apply);
             this.Controls.Add(this.check_save);
             this.Controls.Add(this.label3);
@@ -544,7 +518,7 @@
             this.Name = "Form1";
             this.Text = "Genetic";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Resize += new System.EventHandler(this.Form1_Resize);
+
             ((System.ComponentModel.ISupportInitialize)(this.pic_origin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_bestsol)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -566,12 +540,10 @@
         private System.Windows.Forms.TextBox text_csv;
         private System.Windows.Forms.CheckBox check_save;
         private System.Windows.Forms.PictureBox pic_origin;
-        private System.Windows.Forms.Button btn_settingsave;
         private System.Windows.Forms.PictureBox pic_bestsol;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox text_originsize;
         private System.Windows.Forms.Button btn_runsetsave;
-        private System.Windows.Forms.Button btn_runapply;
         private System.Windows.Forms.TextBox text_cutsize;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox text_crosstype;

@@ -120,7 +120,7 @@ namespace WindowsFormsApp1
             Status = "find";
         }
 
-        private void Btn_settingsave_Click(object sender, EventArgs e)
+        private void Btn_runsetsave_Click(object sender, EventArgs e)
         {
             Status = "Base Conf Save...";
             Config.SetOption("Base Conf", "image", text_image.Text);
@@ -129,9 +129,7 @@ namespace WindowsFormsApp1
             Config.SetOption("Base Conf", "bsave", check_save.Checked.ToString());
             Config.SetOption("Base Conf", "bmedian", check_median.Checked.ToString());
             Status = "Base Conf Save";
-        }
-        private void Btn_runsetsave_Click(object sender, EventArgs e)
-        {
+
             Status = "execute setting save...";
             Config.SetOption("execute", "originsize", text_originsize.Text);
             Config.SetOption("execute", "cutsize", text_cutsize.Text);
@@ -152,7 +150,6 @@ namespace WindowsFormsApp1
 
             if (File.Exists(Config.Path) == false)
             {
-                Btn_settingsave_Click(null, null);
                 Btn_runsetsave_Click(null, null);
             }
 
@@ -187,6 +184,8 @@ namespace WindowsFormsApp1
             else
             {
                 Status = "execute";
+                text_originsize.Enabled = false;
+                text_cutsize.Enabled = false;
                 text_grayscale.Enabled = false;
                 Global.Stop = false;
 
@@ -235,6 +234,8 @@ namespace WindowsFormsApp1
                     Status = "stop!";
                     this.Invoke(new MethodInvoker(() =>
                     {
+                        text_originsize.Enabled = true;
+                        text_cutsize.Enabled = true;
                         text_grayscale.Enabled = true;
                     }));
                     
@@ -267,10 +268,7 @@ namespace WindowsFormsApp1
                 Status = "setting apply fail";
                 MessageBox.Show("not found image");
             }
-        }
 
-        private void Btn_runapply_Click(object sender, EventArgs e)
-        {
             Status = "execute setting apply...";
             try
             {
@@ -328,13 +326,6 @@ namespace WindowsFormsApp1
             return result;
         }
 
-        SizeF nowSize = new Size();
 
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            SizeF conv = this.Size - nowSize;
-            
-
-        }
     }
 }
