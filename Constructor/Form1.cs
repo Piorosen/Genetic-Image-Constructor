@@ -327,5 +327,14 @@ namespace WindowsFormsApp1
             Console.WriteLine($"{result}");
             return result;
         }
+
+        SizeF nowSize = new Size();
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            SizeF conv = this.Size - nowSize;
+            
+
+        }
     }
 }
