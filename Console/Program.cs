@@ -194,7 +194,7 @@ namespace Core
                 result += Genetic.DistanceScore(a1.ConvertColor(ColorType.BLUE), b1.ConvertColor(ColorType.BLUE));
                 result += Genetic.DistanceScore(a1.ConvertColor(ColorType.GREEN), b1.ConvertColor(ColorType.GREEN));
             }
-            
+
             Console.WriteLine($"{result}");
             return result;
         }

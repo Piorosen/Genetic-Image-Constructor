@@ -192,7 +192,7 @@ namespace WindowsFormsApp1
                 e.result.Save(Path.Combine(text_savefolder.Text, $"{e.gen}.png"));
 
                 StreamWriter sw = new StreamWriter(text_csv.Text, true, Encoding.UTF8);
-                sw.WriteLine($"{e.gen}, {Genetic.DistanceScore(new Genetic(new Bitmap(pic_origin.Image)).Gen, new Genetic(e.result).Gen)}");
+                sw.WriteLine($"{e.gen}, {DistanceScore(new Bitmap(pic_origin.Image), e.result)}");
                 sw.Close();
 
                 Status = $"{e.gen} csv save";
@@ -220,7 +220,19 @@ namespace WindowsFormsApp1
         {
             try
             {
-                pic_origin.Image = new Bitmap(text_image.Text);
+                var image = new Bitmap(Image.FromFile(text_image.Text), Global.OriginImageSize); ;
+                
+                if (Global.GrayScale)
+                {
+                    ConvGrayscale(image);
+                }
+
+                if (check_save.Checked)
+                {
+                    image.Save(Path.Combine(Path.GetDirectoryName(text_image.Text), Path.GetFileNameWithoutExtension(text_image.Text)) + "_conv.png");
+                }
+                
+                pic_origin.Image = image;
                 Status = "setting apply";
             }
             catch
@@ -264,6 +276,30 @@ namespace WindowsFormsApp1
         {
             Global.Stop = true;
             Status = "stop...";
+        }
+
+
+
+        long DistanceScore(Bitmap a, Bitmap b)
+        {
+            var a1 = new Genetic(a);
+            var b1 = new Genetic(b);
+
+            var result = 0L;
+
+            if (Global.GrayScale)
+            {
+                result = Genetic.DistanceScore(a1.ConvertColor(ColorType.GRAY), b1.ConvertColor(ColorType.GRAY));
+            }
+            else
+            {
+                result += Genetic.DistanceScore(a1.ConvertColor(ColorType.RED), b1.ConvertColor(ColorType.RED));
+                result += Genetic.DistanceScore(a1.ConvertColor(ColorType.BLUE), b1.ConvertColor(ColorType.BLUE));
+                result += Genetic.DistanceScore(a1.ConvertColor(ColorType.GREEN), b1.ConvertColor(ColorType.GREEN));
+            }
+
+            Console.WriteLine($"{result}");
+            return result;
         }
     }
 }
