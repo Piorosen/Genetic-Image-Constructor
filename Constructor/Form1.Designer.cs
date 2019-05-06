@@ -413,7 +413,7 @@
             // 
             // btn_apply
             // 
-            this.btn_apply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_apply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_apply.Location = new System.Drawing.Point(440, 605);
             this.btn_apply.Name = "btn_apply";
             this.btn_apply.Size = new System.Drawing.Size(75, 23);
@@ -518,7 +518,6 @@
             this.Name = "Form1";
             this.Text = "Genetic";
             this.Load += new System.EventHandler(this.Form1_Load);
-
             ((System.ComponentModel.ISupportInitialize)(this.pic_origin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_bestsol)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
