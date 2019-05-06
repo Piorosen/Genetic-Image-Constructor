@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -76,5 +77,125 @@ namespace WindowsFormsApp1
                 }
         }
 
+        private void find_Click(object sender, EventArgs e)
+        {
+            string name = "text_" + (sender as Control).Name.Split('_')[1];
+
+            var obj = GetType().GetField(name, BindingFlags.NonPublic | BindingFlags.Instance).GetValue(this);
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                obj.GetType().GetProperty("Text").SetValue(obj, ofd.FileName);
+            }
+        }
+
+        private void Btn_settingsave_Click(object sender, EventArgs e)
+        {
+            Config.SetOption("Base Conf", "image", text_image.Text);
+            Config.SetOption("Base Conf", "savefolder", text_savefolder.Text);
+            Config.SetOption("Base Conf", "csv", text_csv.Text);
+            Config.SetOption("Base Conf", "bsave", check_save.Checked.ToString());
+            Config.SetOption("Base Conf", "bmedian", check_median.Checked.ToString());
+        }
+        private void Btn_runsetsave_Click(object sender, EventArgs e)
+        {
+            Config.SetOption("execute", "originsize", text_originsize.Text);
+            Config.SetOption("execute", "cutsize", text_cutsize.Text);
+            Config.SetOption("execute", "crosstype", text_crosstype.Text);
+            Config.SetOption("execute", "grayscale", text_grayscale.Text);
+            Config.SetOption("execute", "mutrange", text_mutrange.Text);
+
+            Config.SetOption("execute", "mutoverchange", text_mutoverchange.Text);
+            Config.SetOption("execute", "mutpointsize", text_mutsize.Text);
+            Config.SetOption("execute", "mutmaxcount", text_mutmaxcount.Text);
+            Config.SetOption("execute", "mutpercent", text_mutpercent.Text);
+            Config.SetOption("execute", "elite", text_elite.Text);
+
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Config.Path = Path.Combine(Application.StartupPath, "config.ini");
+
+            if (File.Exists(Config.Path) == false)
+            {
+                Btn_settingsave_Click(null, null);
+                Btn_runsetsave_Click(null, null);
+            }
+
+            text_image.Text = Config.GetOption("Base Conf", "image");
+            text_savefolder.Text = Config.GetOption("Base Conf", "savefolder");
+            text_csv.Text = Config.GetOption("Base Conf", "csv");
+
+            check_save.Checked = bool.Parse(Config.GetOption("Base Conf", "bsave"));
+            check_median.Checked = bool.Parse(Config.GetOption("Base Conf", "bmedian"));
+
+            text_originsize.Text = Config.GetOption("execute", "originsize");
+            text_cutsize.Text = Config.GetOption("execute", "cutsize");
+            text_crosstype.Text = Config.GetOption("execute", "crosstype");
+            text_grayscale.Text = Config.GetOption("execute", "grayscale");
+            text_mutrange.Text = Config.GetOption("execute", "mutrange");
+
+            text_mutoverchange.Text = Config.GetOption("execute", "mutoverchange");
+            text_mutsize.Text = Config.GetOption("execute", "mutpointsize");
+            text_mutmaxcount.Text = Config.GetOption("execute", "mutmaxcount");
+            text_mutpercent.Text = Config.GetOption("execute", "mutpercent");
+            text_elite.Text = Config.GetOption("execute", "elite");
+
+        }
+
+        private void Btn_run_Click(object sender, EventArgs e)
+        {
+            if (pic_origin.Image == null)
+            {
+                MessageBox.Show("not found image");
+            }
+            else
+            {
+                GeneticManager gm = new GeneticManager(new Bitmap(pic_origin.Image));
+                gm.BestGenImage += Gm_BestGenImage;
+                gm.Run();
+            }
+        }
+
+        private void Gm_BestGenImage(object sender, (Bitmap, int) e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Btn_apply_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                pic_origin.Image = new Bitmap(text_image.Text);
+            }
+            catch
+            {
+                pic_origin.Image = null;
+                MessageBox.Show("not found image");
+            }
+        }
+
+        private void Btn_runapply_Click(object sender, EventArgs e)
+        {
+            var size = text_originsize.Text.Split(',');
+            Global.OriginImageSize = new Size(int.Parse(size[0].Trim('{', '}', ' ')), int.Parse(size[1].Trim('{', '}', ' ')));
+            size = text_cutsize.Text.Split(',');
+            Global.GeneticCutCount = new Size(int.Parse(size[0].Trim('{', '}', ' ')), int.Parse(size[1].Trim('{', '}', ' ')));
+            Global.CrossType = (CrossType)int.Parse(text_crosstype.Text);
+            Global.GrayScale = bool.Parse(text_grayscale.Text);
+
+            Global.MutationPointSize = int.Parse(text_mutsize.Text);
+            Global.MutationRangeRandom = bool.Parse(text_mutrange.Text);
+
+            Global.MutationMaxCount = int.Parse(text_mutmaxcount.Text);
+            Global.MutationOver = bool.Parse(text_mutoverchange.Text);
+            Global.Mutation = int.Parse(text_mutpercent.Text);
+
+            Global.EliteSurvive = int.Parse(text_elite.Text);
+
+
+        }
     }
 }
